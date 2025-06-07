@@ -1,0 +1,32 @@
+name: "Synoku Secrets Action"
+description: "Sync secrets between Synoku and GitHub Actions workflows (load & upload)."
+author: "Synoku"
+inputs:
+  token:
+    description: "Synoku API Token"
+    required: true
+  application:
+    description: "Synoku application name (slug)"
+    required: true
+  environment:
+    description: "Synoku environment name (e.g., ci, staging, uat)"
+    required: false
+    default: "ci"
+  mode:
+    description: "Action mode: 'load' (default) or 'upload'"
+    required: false
+    default: "load"
+  allowEmptyUpload:
+    description: Allow empty uploads to emit a warning and continue
+    required: false
+    default: false
+  debug:
+    description: "Enable debug messages"
+    required: false
+    default: false
+runs:
+  using: "node20"
+  main: "dist/index.js"
+branding:
+  icon: lock
+  color: purple
