@@ -9,6 +9,8 @@ This Action supports two modes:
 
 [![Tests](https://github.com/synoku-org/secrets-action/actions/workflows/test.yml/badge.svg)](https://github.com/synoku-org/secrets-action/actions/workflows/test.yml)
 
+➡️ Learn more at [synoku.com](https://synoku.com) or manage your secrets at [app.synoku.com](https://app.synoku.com).
+
 ## Upload secrets
 
 Useful for the first load to Synoku. Pass all secrets and vars starting with `SYNOKU_`. Example:

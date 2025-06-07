@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload secrets to Synoku
+        uses: ./
+        with:
+          mode: upload
+          token: ${{ secrets.SYNOKU_API_TOKEN }}
+          application: ${{ github.event.repository.name }}
+          environment: prod
+        env:
+          SYNOKU_SECRET_A: ${{ secrets.SECRET_A }}
+          SYNOKU_SECRET_B: ${{ secrets.SECRET_B }}
+          SYNOKU_VARIABLE_A: ${{ vars.VARIABLE_A }}
+          SYNOKU_VARIABLE_B: This is manual variable B
+
+      - name: Load Synoku secrets
+        uses: ./
+        with:
+          token: ${{ secrets.SYNOKU_API_TOKEN }}
+          application: ${{ github.event.repository.name }}
+          environment: prod
+
+      - name: Verify secrets
+        run: |
+          test "$VARIABLE_A" = "This is variable A"
+          test "$VARIABLE_B" = "This is manual variable B"
+          test "$SECRET_A" = "I am secret A"
+          test "$SECRET_B" = "I am secret B"
+          echo "All secrets are correct."
