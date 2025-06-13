@@ -65,5 +65,3 @@ All rights reserved © 2025 Synoku.
 Use of this software is strictly limited to authorized Synoku clients under explicit written agreement.
 
 Any unauthorized use, distribution or modification is prohibited.
-
-For licensing inquiries, contact legal@synoku.com.
